@@ -35,40 +35,9 @@ puts "There are #{types.length} types"
 
 File.open(file_dst, "w") do |file|
     File.readlines(file_src).drop(1).each do |line|
-        if types.key? line.delete!("\n")
-            puts types[line]
-            file.puts "#{types[line]}"
-            found = found + 1
-        else
-            #p "Found non-existing type."
-            #exit
-        end
-        count = count + 1
-    end
-end
-
-file_src = folder_dir + 'startingNodes.csv'
-file_dst = 'startingNodes.dat'
-filename = folder_dir + 'unitnodes.csv'
-
-types = {}
-File.readlines(filename).drop(1).each do |str|
-    id, type = str.delete("\n").delete("\"").split("|")
-    types[type] = id
-end
-puts "There are #{types.length} types"
-
-File.open(file_dst, "a") do |file|
-    File.readlines(file_src).drop(1).each do |line|
-        if types.key? line.delete!("\n")
-            puts types[line]
-            file.puts "#{types[line]}"
-            found = found + 1
-        else
-            #p "Found non-existing type."
-            #p types[line]
-            #exit
-        end
+        line.delete!("\n")
+        file.puts "#{line}"
+        found = found + 1
         count = count + 1
     end
 end
